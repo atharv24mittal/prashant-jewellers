@@ -10,6 +10,14 @@
   </url>
 
   <url>
+    <loc>https://prashantjewellers.vercel.app/huid-verify</loc>
+  </url>
+
+  <url>
+    <loc>https://prashantjewellers.vercel.app/virtual-try-on</loc>
+  </url>
+
+  <url>
     <loc>https://prashantjewellers.vercel.app/about</loc>
   </url>
 
@@ -19,14 +27,6 @@
 
   <url>
     <loc>https://prashantjewellers.vercel.app/feedback</loc>
-  </url>
-
-  <url>
-    <loc>https://prashantjewellers.vercel.app/huidverify</loc>
-  </url>
-
-  <url>
-    <loc>https://prashantjewellers.vercel.app/virtualtryon</loc>
   </url>
 
 </urlset>
