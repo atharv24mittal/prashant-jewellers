@@ -1,0 +1,25 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Anyone can read announcements
+    match /announcements/{id} {
+      allow read: if true;
+      allow write: if false; // Admin only via Firebase Console
+    }
+    // Anyone can submit contact/feedback
+    match /contacts/{id} {
+      allow create: if request.resource.data.name is string
+                    && request.resource.data.message is string
+                    && request.resource.data.name.size() < 100
+                    && request.resource.data.message.size() < 2000;
+      allow read: if false; // Admin only
+    }
+    match /feedback/{id} {
+      allow read: if true;
+      allow create: if request.resource.data.name is string
+                    && request.resource.data.text is string
+                    && request.resource.data.name.size() < 100
+                    && request.resource.data.text.size() < 1000;
+    }
+  }
+}

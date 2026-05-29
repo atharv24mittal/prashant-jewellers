@@ -1,0 +1,195 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --gold: #f59e0b;
+    --gold-light: #fde68a;
+    --gold-dark: #b45309;
+    --obsidian: #08080f;
+    --midnight: #0d0d1f;
+    --champagne: #f7e7ce;
+    --ivory: #fffef5;
+    --deep: #050508;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--obsidian);
+    color: var(--champagne);
+    font-family: 'Cormorant Garamond', serif;
+    overflow-x: hidden;
+  }
+  ::selection { background: var(--gold); color: var(--obsidian); }
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: var(--deep); }
+  ::-webkit-scrollbar-thumb { background: var(--gold-dark); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+}
+
+@layer components {
+  .gold-text {
+    background: linear-gradient(135deg, #d97706 0%, #fde68a 35%, #f59e0b 55%, #fde68a 75%, #b45309 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .shimmer-text {
+    background: linear-gradient(90deg, #92400e 0%, #fde68a 20%, #f59e0b 40%, #fde68a 60%, #f59e0b 80%, #92400e 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 4s linear infinite;
+  }
+  .glass-card {
+    background: rgba(255,255,255,0.025);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(245,158,11,0.12);
+  }
+  .gold-border { border: 1px solid rgba(245,158,11,0.35); }
+  .gold-btn {
+    @apply px-8 py-3 font-accent text-sm tracking-widest uppercase inline-block text-center;
+    background: linear-gradient(135deg, #92400e 0%, #d97706 30%, #fbbf24 55%, #d97706 80%, #92400e 100%);
+    background-size: 200% auto;
+    color: #050508;
+    font-weight: 700;
+    transition: all 0.4s ease;
+    position: relative;
+    cursor: pointer;
+  }
+  .gold-btn:hover {
+    background-position: right center;
+    box-shadow: 0 0 30px rgba(245,158,11,0.45), 0 0 60px rgba(245,158,11,0.15);
+    transform: translateY(-2px);
+    color: #050508;
+  }
+  .outline-gold-btn {
+    @apply px-8 py-3 font-accent text-sm tracking-widest uppercase inline-block text-center;
+    border: 1px solid rgba(245,158,11,0.5);
+    color: #fbbf24;
+    background: transparent;
+    transition: all 0.35s ease;
+    cursor: pointer;
+  }
+  .outline-gold-btn:hover {
+    background: rgba(245,158,11,0.1);
+    border-color: #f59e0b;
+    color: #fde68a;
+    box-shadow: 0 0 20px rgba(245,158,11,0.2);
+    transform: translateY(-2px);
+  }
+  .section-title { @apply font-display text-4xl md:text-5xl lg:text-6xl; line-height: 1.1; }
+  .gold-divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(245,158,11,0.6), transparent); }
+  .input-field {
+    @apply w-full bg-white/[0.03] border border-gold-800/30 text-champagne/90 px-4 py-3 text-sm font-sans outline-none transition-all duration-300;
+    placeholder-color: rgba(247,231,206,0.2);
+  }
+  .input-field:focus { border-color: rgba(245,158,11,0.6); box-shadow: 0 0 0 3px rgba(245,158,11,0.06); }
+  .input-field::placeholder { color: rgba(247,231,206,0.2); }
+}
+
+/* ── Animations ── */
+@keyframes shimmer { to { background-position: 200% center; } }
+@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-18px)} }
+@keyframes marquee { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+@keyframes glow-pulse { 0%,100%{opacity:.4} 50%{opacity:1} }
+@keyframes spin-slow { to{transform:rotate(360deg)} }
+@keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+@keyframes scaleIn { from{opacity:0;transform:scale(.94)} to{opacity:1;transform:scale(1)} }
+@keyframes particle-drift {
+  0%{transform:translateY(0) translateX(0) scale(1); opacity:.6}
+  50%{transform:translateY(-60px) translateX(20px) scale(1.2); opacity:.3}
+  100%{transform:translateY(-120px) translateX(-10px) scale(.8); opacity:0}
+}
+
+/* ── Noise overlay ── */
+.noise-overlay::after {
+  content:''; position:fixed; inset:0; pointer-events:none; z-index:9999; opacity:.018;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ── Announcement marquee ── */
+.marquee-wrapper { overflow:hidden; white-space:nowrap; }
+.marquee-content { display:inline-block; animation:marquee 35s linear infinite; }
+.marquee-content:hover { animation-play-state:paused; }
+
+/* ── Announcement bar ── */
+.announcement-bar {
+  background: linear-gradient(90deg,#78350f,#b45309,#d97706,#f59e0b,#d97706,#b45309,#78350f);
+  background-size:300% auto; animation:shimmer 5s linear infinite;
+}
+
+/* ── Particle ── */
+.particle {
+  position:absolute; border-radius:50%; pointer-events:none;
+  animation: particle-drift linear infinite;
+}
+
+/* ── Chat bubbles ── */
+.chat-bubble-user {
+  background:linear-gradient(135deg,#b45309,#d97706);
+  color:#050508; border-radius:18px 18px 4px 18px;
+}
+.chat-bubble-ai {
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(245,158,11,0.18);
+  color:var(--champagne); border-radius:18px 18px 18px 4px;
+}
+
+/* ── Spinner ── */
+.jewel-spinner {
+  width:52px; height:52px;
+  border:2px solid rgba(245,158,11,0.08);
+  border-top-color:var(--gold); border-radius:50%;
+  animation:spin-slow 1s linear infinite;
+}
+
+/* ── Float animation ── */
+.animate-float { animation:float 6s ease-in-out infinite; }
+.animate-float-slow { animation:float 9s ease-in-out infinite; }
+
+/* ── Star filled/empty ── */
+.star-filled { color:var(--gold); fill:var(--gold); }
+.star-empty { color:rgba(245,158,11,0.18); }
+
+/* ── Scrollbar thin ── */
+.scrollbar-thin::-webkit-scrollbar { width:3px; }
+.scrollbar-thin::-webkit-scrollbar-thumb { background:rgba(245,158,11,0.25); border-radius:2px; }
+
+/* ── Hero diamond grid ── */
+.diamond-grid {
+  background-image:
+    linear-gradient(rgba(245,158,11,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245,158,11,0.04) 1px, transparent 1px);
+  background-size:60px 60px;
+  transform:perspective(600px) rotateX(20deg);
+  transform-origin:top center;
+}
+
+/* ── Section divider ornament ── */
+.ornament-divider {
+  display:flex; align-items:center; gap:1rem; justify-content:center;
+}
+.ornament-divider::before,.ornament-divider::after {
+  content:''; flex:1; max-width:120px; height:1px;
+  background:linear-gradient(90deg,transparent,rgba(245,158,11,0.4));
+}
+.ornament-divider::after { background:linear-gradient(90deg,rgba(245,158,11,0.4),transparent); }
+
+/* ── Glow ring ── */
+.glow-ring {
+  box-shadow:0 0 0 1px rgba(245,158,11,0.2), 0 0 20px rgba(245,158,11,0.08), 0 0 60px rgba(245,158,11,0.04);
+}
+
+/* ── WhatsApp button ── */
+.whatsapp-btn {
+  background: linear-gradient(135deg,#25d366,#128c7e);
+  transition: all .3s ease;
+}
+.whatsapp-btn:hover {
+  box-shadow:0 0 25px rgba(37,211,102,0.4);
+  transform:translateY(-2px);
+}
