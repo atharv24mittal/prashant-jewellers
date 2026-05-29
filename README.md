@@ -1,184 +1,203 @@
-# 💎 Prashant Jewellers Website
+# ✨ Prashant Jewellers — Official Website
 
-> **Est. 1885 · 140+ Years of Trust · Jamalpur Gogri, Bihar**
-> Proprietor: Mrs Ritu Mahensaria | 📞 7004403422
+> **140+ years of timeless elegance since 1885**
+> Live at → [prashantjewellers.vercel.app](https://prashantjewellers.vercel.app)
 
-A world-class jewellery website with AI chatbot, virtual try-on, HUID verification, Firebase backend, and Vercel deployment — all **100% free**.
+A full-featured jewellery e-presence website for **Prashant Jewellers**, Main Market, Jamalpur Gogri, Bihar.
+Proprietor: **Mrs Ritu Mahensaria** · 📞 7004403422 · ✉️ prashantmahensaria@yahoo.co.in
 
 ---
 
-## ✨ Features
+## Tech Stack
 
-| Feature | Description |
+| Layer | Technology |
 |---|---|
-| 🤖 **AI Chatbot** | Powered by Google Gemini — answers jewellery queries 24/7 |
-| 👗 **Virtual Try-On** | Upload photo → AI detects face shape → personalized recommendations |
-| 🛡️ **HUID Verify** | Verify BIS hallmark authenticity with a 6-character code |
-| 📣 **Announcement Bar** | Live announcements from Firebase Firestore |
-| ⭐ **Feedback System** | Real reviews stored in Firebase |
-| 📧 **Contact Form** | Messages saved to Firebase Firestore |
-| 🗺️ **Google Maps** | Direct navigation from the website |
-| 🎨 **Luxury Design** | Gold/dark theme, animations, 100% mobile responsive |
-| 🔍 **SEO Optimized** | Structured data, meta tags, canonical URLs |
+| Frontend | React 18 + Vite |
+| Styling | Tailwind CSS |
+| Animations | Framer Motion |
+| Database | Firebase Firestore |
+| AI Chatbot | Groq API (llama-3.3-70b-versatile) |
+| Routing | React Router v6 |
+| SEO | React Helmet Async |
+| Notifications | React Hot Toast |
+| Hosting | Vercel |
 
 ---
 
-## 🚀 Quick Setup (15 minutes)
+## Pages
 
-### Step 1 — Clone & Install
-
-```bash
-git clone https://github.com/YOUR_USERNAME/prashant-jewellers.git
-cd prashant-jewellers
-npm install
-```
-
-### Step 2 — Set Up Firebase (FREE)
-
-1. Go to [https://console.firebase.google.com](https://console.firebase.google.com)
-2. Click **"Add project"** → Name it `prashant-jewellers` → Continue
-3. Enable **Google Analytics** (optional) → Create project
-4. In the project dashboard: **Project Settings** → **Your apps** → Click `</>` (Web)
-5. Register app as `prashant-jewellers-web` → Copy the config
-6. In Firebase Console: **Build → Firestore Database → Create database** → Start in production mode → Choose `asia-south1` (Mumbai)
-7. **Build → Storage** → Get started (for future image uploads)
-8. Go to **Firestore → Rules** → paste content from `firestore.rules` → Publish
-
-### Step 3 — Get Google Gemini API Key (FREE)
-
-1. Visit [https://aistudio.google.com/app/apikey](https://aistudio.google.com/app/apikey)
-2. Click **"Create API key"** → Copy it
-3. Free tier: 15 requests/minute, 1M tokens/day — more than enough!
-
-### Step 4 — Create your `.env` file
-
-```bash
-cp .env.example .env
-```
-
-Open `.env` and fill in your values:
-
-```env
-VITE_FIREBASE_API_KEY=AIzaSy...
-VITE_FIREBASE_AUTH_DOMAIN=prashant-jewellers.firebaseapp.com
-VITE_FIREBASE_PROJECT_ID=prashant-jewellers
-VITE_FIREBASE_STORAGE_BUCKET=prashant-jewellers.appspot.com
-VITE_FIREBASE_MESSAGING_SENDER_ID=123456789
-VITE_FIREBASE_APP_ID=1:123456789:web:abc123
-VITE_FIREBASE_MEASUREMENT_ID=G-XXXXXXXX
-
-VITE_GEMINI_API_KEY=AIzaSy...
-```
-
-### Step 5 — Run Locally
-
-```bash
-npm run dev
-```
-
-Open [http://localhost:5173](http://localhost:5173) 🎉
+| Route | Page | Description |
+|---|---|---|
+| `/` | Home | Hero, stats counter, categories, heritage banner, testimonials, CTA |
+| `/collections` | Collections | Filterable jewellery grid — search + category chips |
+| `/virtual-try-on` | Virtual Try-On | Upload photo, AI face shape detection, jewellery recommendations |
+| `/huid-verify` | HUID Verify | BIS Hallmark HUID code verification (demo + Firebase lookup) |
+| `/about` | About | Proprietor section, animated timeline, brand values |
+| `/contact` | Contact | Contact form (saves to Firestore), map button, all contact info |
+| `/feedback` | Feedback | Star ratings, review submission to Firestore, live review list |
 
 ---
 
-## 🌐 Deploy to Vercel (FREE)
-
-### Option A — Vercel CLI (Fastest)
-
-```bash
-npm install -g vercel
-vercel
-# Follow the prompts
-```
-
-Then add environment variables:
-```bash
-vercel env add VITE_FIREBASE_API_KEY
-vercel env add VITE_GEMINI_API_KEY
-# ... add all VITE_ variables
-vercel --prod
-```
-
-### Option B — GitHub + Vercel (Recommended for auto-deploy)
-
-1. Push to GitHub:
-```bash
-git init
-git add .
-git commit -m "🚀 Initial launch — Prashant Jewellers website"
-git remote add origin https://github.com/YOUR_USERNAME/prashant-jewellers.git
-git push -u origin main
-```
-
-2. Go to [https://vercel.com](https://vercel.com) → **New Project** → Import your GitHub repo
-3. In **Environment Variables**, add all your `.env` keys
-4. Click **Deploy** ✅
-
-Your site is now live at `https://prashant-jewellers.vercel.app`!
-
-### Custom Domain (Optional — Free with Vercel)
-
-- In Vercel: **Settings → Domains** → Add `prashantjewellers.in`
-- Update your domain DNS to point to Vercel
-- SSL certificate is automatic and free
-
----
-
-## 📁 Project Structure
+## Project Structure
 
 ```
 prashant-jewellers/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   ├── Navbar.jsx          # Navigation with mobile drawer
-│   │   ├── Footer.jsx          # Footer with links, contact, map
-│   │   ├── AnnouncementBar.jsx # Live scrolling announcements
-│   │   └── AIChatbot.jsx       # Gemini-powered chat widget
-│   ├── pages/
-│   │   ├── Home.jsx            # Hero, stats, categories, testimonials
-│   │   ├── Collections.jsx     # Filterable jewellery grid
-│   │   ├── VirtualTryOn.jsx    # AI face shape + recommendations
-│   │   ├── HUIDVerify.jsx      # HUID code verification
-│   │   ├── About.jsx           # Story, timeline, proprietor
-│   │   ├── Contact.jsx         # Form + map + contact info
-│   │   └── Feedback.jsx        # Reviews + submission form
-│   ├── utils/
-│   │   └── firebase.js         # Firebase initialization
-│   ├── styles/
-│   │   └── globals.css         # Global styles + Tailwind
-│   ├── App.jsx                 # Routes + layout
-│   └── main.jsx                # Entry point
-├── .env.example                # Environment variable template
-├── .gitignore
-├── firestore.rules             # Firebase security rules
-├── vercel.json                 # Vercel deployment config
-├── tailwind.config.js
+├── index.html                  ← SEO meta tags, Google Fonts, schema.org structured data
 ├── vite.config.js
-└── package.json
+├── tailwind.config.js          ← Custom colors: gold, obsidian, midnight, deep, champagne
+├── vercel.json                 ← Vercel deployment + SPA rewrites
+├── firestore.rules
+├── .env.example
+└── src/
+    ├── main.jsx                ← Entry point (BrowserRouter + HelmetProvider + Toaster)
+    ├── App.jsx                 ← Routes + fixed layout
+    ├── styles/
+    │   └── globals.css         ← Custom CSS utilities + animations
+    ├── utils/
+    │   ├── firebase.js         ← Firebase init
+    │   └── constants.js        ← MAPS_URL, PHONE, EMAIL, WHATSAPP, TIMINGS
+    ├── components/
+    │   ├── AnnouncementBar.jsx ← Fixed top bar, CSS marquee, live from Firestore
+    │   ├── Navbar.jsx          ← Fixed below announcement bar, mobile drawer
+    │   ├── Footer.jsx
+    │   ├── AIChatbot.jsx       ← Floating AI chat (Groq API)
+    │   └── WhatsAppButton.jsx  ← Floating WhatsApp button
+    └── pages/
+        ├── Home.jsx
+        ├── Collections.jsx
+        ├── VirtualTryOn.jsx
+        ├── HUIDVerify.jsx
+        ├── About.jsx
+        ├── Contact.jsx
+        └── Feedback.jsx
 ```
 
 ---
 
-## 🔧 Adding Live Gold Rate (Optional Enhancement)
+## Local Setup
 
-To show live gold rates, you can use [metals-api.com](https://metals-api.com) or [goldapi.io](https://goldapi.io). Both have free tiers. Ask the AI chatbot in this project for integration help!
+**Prerequisites:** Node.js 18+
+
+```bash
+# 1. Clone the repo
+git clone https://github.com/YOUR_USERNAME/prashant-jewellers.git
+cd prashant-jewellers
+
+# 2. Install dependencies
+npm install
+
+# 3. Set up environment variables
+cp .env.example .env
+# Fill in your Firebase and Groq API keys (see below)
+
+# 4. Start the dev server
+npm run dev
+# Opens at http://localhost:5173
+```
 
 ---
 
-## 📣 Managing Announcements
+## Environment Variables
 
-Add announcements directly in Firebase Console:
-1. **Firestore → announcements → Add document**
-2. Fields: `text: "🎁 New Diwali Offer — 5% off on diamonds!"`, `active: true`, `createdAt: (timestamp)`
+Create a `.env` file in the project root:
+
+```env
+VITE_FIREBASE_API_KEY=
+VITE_FIREBASE_AUTH_DOMAIN=
+VITE_FIREBASE_PROJECT_ID=
+VITE_FIREBASE_STORAGE_BUCKET=
+VITE_FIREBASE_MESSAGING_SENDER_ID=
+VITE_FIREBASE_APP_ID=
+VITE_FIREBASE_MEASUREMENT_ID=
+VITE_GROQ_API_KEY=
+```
+
+**Getting your keys:**
+- **Firebase** → [console.firebase.google.com](https://console.firebase.google.com) → Project Settings → Your apps
+- **Groq** → [console.groq.com/keys](https://console.groq.com/keys) (free tier available)
+
+> ⚠️ Never commit your `.env` file. It is already listed in `.gitignore`.
 
 ---
 
-## 📞 Contact
+## Deployment (Vercel)
 
-**Prashant Jewellers** · Main Market, Jamalpur Gogri, Bihar  
-📞 7004403422 · 📧 prashantmahensaria@yahoo.co.in
+```bash
+# Push to GitHub
+git add .
+git commit -m "your message"
+git push
+
+# Vercel auto-deploys on every push to main
+# First time: go to vercel.com → New Project → Import your GitHub repo
+# Add all VITE_ environment variables in the Vercel dashboard → Settings → Environment Variables
+```
+
+The `vercel.json` already handles SPA rewrites so all routes work on refresh.
 
 ---
 
-*Built with ❤️ for 140+ years of trust*
+## Firebase Collections
+
+| Collection | Written by | Contents |
+|---|---|---|
+| `contacts` | Contact page form | name, phone, message, timestamp |
+| `feedback` | Feedback page form | name, rating, review, timestamp |
+| `announcements` | Admin (manual) | text, active (bool) — shown in top bar |
+
+---
+
+## HUID Demo Codes
+
+For testing the HUID Verify page without a real code:
+
+| Code | Item |
+|---|---|
+| `AA1234` | 22K Gold Necklace |
+| `BB5678` | Diamond Ring |
+| `CC9012` | Silver Bangles |
+
+---
+
+## AI Chatbot
+
+The floating AI advisor uses **Groq's free API** with `llama-3.3-70b-versatile`. It is pre-trained with a system prompt covering:
+
+- Jewellery recommendations by occasion and face shape
+- Gold, diamond, silver product knowledge
+- HUID / BIS Hallmark explanation
+- Shop timings, location, contact details
+- Bridal consultation guidance
+- Jewellery care tips
+
+---
+
+## Roadmap
+
+- [ ] Live gold rate widget (22K / 24K) via GoldAPI
+- [ ] Admin panel at `/admin` for announcements and contact inbox
+- [ ] Real jewellery photos via Firebase Storage
+- [ ] WhatsApp enquiry button per product card
+- [ ] Embedded Google Maps iframe on Contact page
+- [ ] PWA support (installable on mobile)
+- [ ] OG image for WhatsApp / social link previews
+
+---
+
+## Contact
+
+**Prashant Jewellers**
+Main Market, Jamalpur Gogri, Bihar, India
+
+📞 [7004403422](tel:7004403422)
+💬 [WhatsApp](https://wa.me/917004403422)
+✉️ prashantmahensaria@yahoo.co.in
+🗺️ [Get Directions](https://www.google.com/maps/dir//Prashant+jewellers/@25.4114012,86.6575981,17z)
+
+**Shop Timings:**
+Mon–Sat: 11:00 AM – 7:30 PM
+Sunday: 12:00 PM – 7:30 PM
+
+---
+
+*Built with ❤️ for 140 years of craftsmanship.*
